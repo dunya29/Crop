@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="ru" class="page">
+
+@@include('_head.html', {   
+    "title": "Главная"
+})
+
+<body>
+    @@include("_svg.html")
+    <div class="wrap">
+        <!--header-->
+        @@include('_header.html')
+        <!--main-->  
+        <main class="main">
+            <div class="container">
+                <form action="" class="form">
+                    <input type="hidden" id="good-price" value="5600">
+                    <input type="hidden" id="good-area" value="">
+                    <input type="hidden" id="good-total" value="">
+                    <div class="sizes">
+                        <div class="sizes__item">
+                            <p>w</p>
+                            <div class="size size--w">
+                                <input type="text" id="crop-w" name="" data-value="400" max="400">
+                                <b>см</b>
+                            </div>
+                        </div>
+                        <div class="sizes__item">
+                            <p>h</p>
+                            <div class="size size--h">
+                                <input type="text" id="crop-h" name="" data-value="270" max="270"><b>см</b>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="good-price">
+                        <div class="good-price__item price-texture">
+                            <b id="good-price-text"></b>
+                            <span id="good-price-unit">руб./кв.м</span>
+                        </div>
+                        <div class="good-price__item price-multiply">х</div>
+                        <div class="good-price__item price-area">
+                            <b id="good-area-text"></b>
+                            <span id="good-area-unit">кв.м.</span>
+                        </div>
+                        <div class="good-price__item price-equally">=</div>
+                        <div class="good-price__item price-total">
+                            <b id="good-total-text"></b>
+                            <span id="good-total-unit">рублей</span>
+                        </div>
+                    </div>
+                    <button class="btn" type="button" id="button">Crop</button>
+                    <div id="result"></div>
+                    <div class="image-container">
+                        <img id="image" src="img/flower.jpg" alt="Picture" data-policeweb="verified" class="cropper-hidden">
+                    </div>
+                    <button class="btn" type="submit">Заказать</button>
+                </form>
+            </div>
+        </main>
+         <!--footer-->
+        @@include('_footer.html')
+        @@include('_modal.html')
+    </div>
+    @@include('_js.html')
+</body>
+
+</html>

@@ -1,0 +1,28 @@
+.breadcrumbs {
+    padding-top: 37px;
+    margin-bottom: 64px;
+    ul {
+        display: flex;
+        flex-wrap: wrap;
+        align-items: center;
+        li {
+            color: $light-gray;
+            margin-top: 8px;
+            font-size: 16px;
+            line-height: 140%;
+            &:after {
+                content: ">>";
+                margin: 0 17px;
+            }
+            &:last-child:after {
+                display: none;
+            }
+            a {          
+                color: inherit;
+                &:hover {
+                    text-decoration: underline;
+                }
+            }
+        }
+    }
+}
