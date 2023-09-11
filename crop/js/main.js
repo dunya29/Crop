@@ -18,7 +18,7 @@
           let areaVal = (widthInp.value * heightInp.value)/10000
           area.value = areaVal.toFixed(3)
           areaTxt.textContent = areaVal.toFixed(2)
-          let totalVal = Math.round(areaVal * priceVal)
+          let totalVal = areaVal < 1 ? 1 * priceVal : Math.round(areaVal * priceVal) 
           total.value = totalVal
           totalTxt.textContent = String(totalVal).replace(/\B(?=(\d{3})+(?!\d))/g, " ").trim()
        }
@@ -31,7 +31,7 @@
 	  	    ovable: false,
 	  	    oomable: false,
             rotatable: false,
-            cropBoxMovable: false,
+            //cropBoxMovable: false,
             autoCropArea: 1,
             dragMode: "none",
             ready: function (event) {
@@ -41,9 +41,8 @@
             crop: function (event) {
                 let w = (Math.ceil(cropper.cropBoxData.width) /  cropper.containerData.width) * 100
                 let h = (Math.ceil(cropper.cropBoxData.height) / cropper.containerData.height) * 100
-                console.log(parseFloat(widthInpVal * w / 100).toFixed(1))
-                document.querySelector(".size--w input").value = parseFloat(widthInpVal * w / 100).toFixed(1)
-                document.querySelector(".size--h input").value = parseFloat(heightInpVal * h / 100).toFixed(1)
+                document.querySelector(".size--w input").value = parseFloat(Math.round(widthInpVal * w / 100)).toFixed(1)
+                document.querySelector(".size--h input").value = parseFloat(Math.round(heightInpVal * h / 100)).toFixed(1)
                 setData()
             },
             zoom: function (event) {
@@ -55,10 +54,10 @@
         });
         document.querySelectorAll(".size input").forEach(inp => {
             inp.addEventListener("change", () => {
-                let val = Number(String(inp.value).replace(/[^0-9]/g,"")) / 10
+                let val = Number(String(Math.round(inp.value)).substring(0,inp.value.indexOf('.')))
                 inp.value = val > inp.max ? parseFloat(inp.max).toFixed(1)  : parseFloat(val).toFixed(1) 
-                let dataW = (Number(String(document.querySelector(".size--w input").value).replace(/[^0-9]/g,""))) / 10
-                let dataH = (Number(String(document.querySelector(".size--h input").value).replace(/[^0-9]/g,""))) / 10
+                let dataW = parseInt(document.querySelector(".size--w input").value)//(Number(String(document.querySelector(".size--w input").value).replace(/[^0-9]/g,""))) / 10
+                let dataH = parseInt(document.querySelector(".size--h input").value)
                 let wPercent = dataW /  widthInpVal * 100
                 let hpercent = dataH / heightInpVal * 100
                 let data = {
