@@ -54,7 +54,7 @@
         });
         document.querySelectorAll(".size input").forEach(inp => {
             inp.addEventListener("change", () => {
-                let val = Number(String(Math.round(inp.value)).substring(0,inp.value.indexOf('.')))
+                let val = inp.value.indexOf('.') > 0 ? Number(String(Math.round(inp.value)).substring(0,inp.value.indexOf('.'))) : Math.round(inp.value) 
                 inp.value = val > inp.max ? parseFloat(inp.max).toFixed(1)  : parseFloat(val).toFixed(1) 
                 let dataW = parseInt(document.querySelector(".size--w input").value)//(Number(String(document.querySelector(".size--w input").value).replace(/[^0-9]/g,""))) / 10
                 let dataH = parseInt(document.querySelector(".size--h input").value)
